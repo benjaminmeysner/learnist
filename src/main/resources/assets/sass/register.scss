@@ -1,0 +1,35 @@
+@import "default";
+
+body {
+  background-color: #AAAAAA;
+  display: flex;
+  #nav {
+    background-color: $theme;
+  }
+  #registerPage {
+    background-color: white;
+    text-align: left;
+    max-width: 768px;
+    width: 100vw;
+    margin: 50px 25px 25px 25px;
+    padding: 25px;
+    border-radius: 12.5px;
+    position: relative;
+    top: 55px;
+    @media (max-width: 767px) {
+      margin: 0;
+      border-radius: 0;
+    }
+    form {
+      .custom-file-control:lang(en):after {
+        content: attr(data-filename);
+      }
+      #submitGroup {
+        display: flex;
+        button {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+}

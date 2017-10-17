@@ -1,0 +1,172 @@
+buildscript {
+	ext { springBootVersion = '1.4.1.RELEASE' }
+	repositories { mavenCentral() }
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("com.gradle.publish:plugin-publish-plugin:0.9.2")
+		//classpath 'org.springframework:springloaded:1.2.6.RELEASE'
+	}
+}
+
+plugins { id "com.moowork.gulp" version "1.1.1" }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+	baseName = 'fdm-webapp'
+	version = '0.1.0'
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://jitpack.io' }
+}
+
+eclipse {
+	project {
+		name = 'FDMWebApp'
+		buildCommand 'org.eclipse.jdt.core.javabuilder'
+		buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
+		buildCommand 'org.springframework.ide.eclipse.core.springbuilder'
+		buildCommand 'org.eclipse.wst.common.project.facet.core.builder'
+		natures 'org.eclipse.jdt.core.javanature', 'org.eclipse.buildship.core.gradleprojectnature', 'org.springframework.ide.eclipse.core.springnature', 'org.eclipse.wst.common.project.facet.core.nature'
+	}
+}
+
+/*idea {
+	module {
+		inheritOutputDirs = false
+		outputDir = file("$buildDir/classes/main/")
+	}
+}*/
+
+dependencyManagement {
+	imports { mavenBom 'com.amazonaws:aws-java-sdk-bom:1.10.77' }
+}
+
+processResources {
+	exclude '**/assets'
+}
+
+bootRun {
+	systemProperties['name'] = System.properties.getProperty("name")
+}
+
+test {
+	systemProperties['name'] = System.properties.getProperty("name")
+}
+
+// installs npm and gulp
+task gulpBuild() { dependsOn 'npmInstall', 'installGulp' }
+
+gulp_sass.dependsOn 'gulpBuild'
+
+//comment out if npm not installed
+build.dependsOn gulp_sass
+
+dependencies {
+
+	compile('com.github.spring-gradle-plugins:dependency-management-plugin:v1.0.0.RELEASE')
+
+	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+	// JSP
+	compile("org.apache.tomcat.embed:tomcat-embed-jasper:9.0.0.M11")
+	compile("javax.servlet:jstl:1.2")
+	// persistence
+	compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+	runtime("mysql:mysql-connector-java")
+	// Security
+	compile("org.springframework.boot:spring-boot-starter-security")
+	testCompile("org.springframework.security:spring-security-test")
+	// mail
+	compile('javax.mail:mail:1.4.7')
+	// storage
+	compile('com.amazonaws:aws-java-sdk-s3')
+	// form validator
+	compile('org.webjars.npm:github-com-1000hz-bootstrap-validator:0.11.5')
+	//pace
+	compile('org.webjars:pace:1.0.2')
+	// leafletJS
+	compile 'org.webjars:leaflet:1.0.3'
+	// videoJS
+	compile('org.webjars:video-js:5.10.7')
+	// cucumber
+	testCompile("info.cukes:cucumber-spring:1.2.5")
+	testCompile("info.cukes:cucumber-java:1.2.5")
+	testCompile("info.cukes:cucumber-junit:1.2.5")
+	testCompile("junit:junit:4.12")
+	// Apache Tiles
+	compile group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.7'
+	//for google authenticator
+	compile 'com.warrenstrange:googleauth:1.1.1'
+	// https://mvnrepository.com/artifact/com.google.zxing/core
+	//for the barcode
+	compile group: 'com.google.zxing', name: 'javase', version: '3.2.1'
+	// https://github.com/jiecao-fm/hashids-java
+	//Hash id - course code generation
+	compile('org.hashids:hashids:1.0.1')
+	// https://mvnrepository.com/artifact/com.google.code.gson/gson
+	compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
+
+
+}
+
+task wrapper(type: Wrapper) { gradleVersion = '3.3' }
+
+// CUCUMBER CONFIGURATION
+configurations {
+	cucumberRuntime { extendsFrom testRuntime }
+}
+
+task cucumber(type: JavaExec) {
+	dependsOn assemble, compileTestJava
+	main = "cucumber.api.cli.Main"
+	classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+	String newName = System.properties.getProperty("name")
+	if(newName == null){
+		newName = "test"
+	}
+	System.setProperty("name",newName)
+	systemProperties['name'] = newName
+	if (project.hasProperty("tags")) {
+		args = [
+				'--plugin',
+				'pretty',
+				'--glue',
+				'FDMWebApp',
+				'src/test/resources',
+				'--tags', tags
+
+		]
+	} else {
+		args = [
+				'--plugin',
+				'pretty',
+				'--glue',
+				'FDMWebApp',
+				'src/test/resources'
+		]
+	}
+}
+
+bootRun {
+	String newName = System.properties.getProperty("name")
+	if(newName == "test"){
+		newName = "dev"
+	}
+	System.setProperty("name",newName)
+	systemProperties['name'] = newName
+}
+
+test {
+	String newName = System.properties.getProperty("name")
+	if(newName == null){
+		newName = "test"
+	}
+	System.setProperty("name",newName)
+	systemProperties['name'] = newName
+}

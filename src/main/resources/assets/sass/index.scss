@@ -1,0 +1,100 @@
+@import "default";
+
+html {
+  overflow-x: hidden;
+  body {
+    @include background-cover;
+    background: url("../images/bg1-min.jpg") no-repeat fixed center;
+    nav {
+      .scroll {
+        border: 1px solid white;
+        .form-control {
+          color: white;
+          background-color: transparent;
+          &::-webkit-input-placeholder {
+            color: white;
+          }
+          &::-moz-placeholder {
+            color: white;
+          }
+          &:-moz-placeholder {
+            color: white;
+          }
+          &:-ms-input-placeholder {
+            color: white;
+          }
+
+        }
+        .input-group-addon {
+          background-color: transparent;
+          button {
+            color: white;
+          }
+        }
+      }
+    }
+    .container-fluid {
+      position: relative;
+      height: 100vh;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+
+      .intro-text {
+        #greetingMessage {
+          color: white;
+
+          font-size: 50px;
+        }
+        .intro-lead-in {
+          font-style: italic;
+          font-size: 22px;
+          line-height: 22px;
+          margin-bottom: 25px;
+          @media(min-width: 768px) {
+            font-size: 40px;
+            line-height: 40px;
+          }
+        }
+        .intro-heading {
+          @include montserrat;
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 20px;
+        }
+      }
+    }
+    #courses {
+      .container {
+        background-color: rgba(150, 150, 150, 0.5);
+        h3 {
+          font-weight: 300;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+    #sources {
+      .container {
+        background-color: rgba(150, 150, 150, 0.5);
+        .source {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          div {
+            padding: 1.5rem 1.5rem;
+            p {
+              margin: 0;
+            }
+          }
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}

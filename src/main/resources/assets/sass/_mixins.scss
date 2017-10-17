@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+// Background Cover Mixin
+
+@mixin background-cover {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+// Font Mixins
+@mixin montserrat {
+  font-family: 'Montserrat', sans-serif;
+}

@@ -1,0 +1,295 @@
+@import "default";
+
+html {
+  min-height: 100vh;
+  body {
+    background-color: #a7a7a7;
+    #nav {
+      background-color: $theme;
+    }
+    #main {
+      text-align: left;
+      margin-top: 63px;
+      @media (min-width: 768px) {
+        margin-top: 87px;
+      }
+      #reviewModal {
+
+      }
+      .sidebar {
+        position: fixed;
+        height: 100vh;
+        padding: 0;
+        ul {
+          padding-left: 10px;
+          .nav-link {
+            border-radius: 0;
+          }
+        }
+      }
+      span.file-upload-text:after {
+        content: attr(data-filename);
+      }
+      #learnersCard {
+        @media (min-width: 768px) {
+          margin-left: 15px;
+        }
+      }
+      #courseHeader {
+        flex-direction: column;
+        .btn-group {
+          padding-top: .25rem;
+        }
+        @media(min-width: 768px) {
+          flex-direction: inherit;
+          margin-left: auto;
+          padding-top: 0;
+          .btn-group {
+            margin-left: auto;
+          }
+        }
+      }
+      #course-attrs-sm {
+        .cat {
+          padding: .5rem .5rem;
+          &:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, .05);
+          }
+        }
+      }
+      .course-attrs {
+        justify-content: space-between;
+        align-items: center;
+        @media(min-width: 768px) {
+          display: flex;
+        }
+        div {
+          padding: .75rem;
+          border-top: 1px solid #eceeef;
+          strong {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+      #newLesson {
+        @media(min-width: 768px) {
+          width: 50%;
+        }
+      }
+      #coursesReplace {
+        .card.row {
+          height: 250px;
+          flex-direction: row;
+          background-color: $theme;
+          color: white;
+          margin: 2rem 0;
+          &:first-child {
+            margin-top: 0;
+          }
+          @media (max-width: 767px) {
+            height: auto;
+          }
+          .col-lg-4 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          .col-lg-8 {
+            #top {
+              .card-title {
+                font-weight: 300;
+              }
+            }
+            #viewCourse {
+
+              @media (min-width: 768px) {
+                bottom: 1.25rem;
+                position: absolute;
+                right: 1.25rem;
+              }
+            }
+          }
+        }
+      }
+      main {
+        margin: 0;
+      }
+      .slide {
+        background-color: $theme;
+        .carousel-item {
+          .carousel-div {
+            margin: 0 auto;
+            img {
+              height: 300px;
+              @media(min-width: 768px) {
+                height: 400px;
+              }
+            }
+          }
+          .carousel-caption {
+            background: rgba(150, 150, 150, 0.7);
+          }
+        }
+      }
+    }
+    .star-rating {
+      display: flex;
+      i {
+        color: #FFC107;
+      }
+    }
+    /* Style the tab */
+    div.tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    div.tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+    }
+
+    /* Change background color of buttons on hover */
+    div.tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    div.tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+  }
+  .material-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  div.stars {
+    width: 270px;
+    display: inline-block;
+  }
+
+  input.star {
+    display: none;
+  }
+
+  label.star {
+    float: right;
+    padding: 10px;
+    font-size: 36px;
+    color: #444;
+    transition: all .2s;
+  }
+
+  input.star:checked ~ label.star:before {
+    content: '\f005';
+    color: #FD4;
+    transition: all .25s;
+  }
+
+  input.star-5:checked ~ label.star:before {
+    color: #FE7;
+    text-shadow: 0 0 20px #952;
+  }
+
+  input.star-1:checked ~ label.star:before {
+    color: #F62;
+  }
+
+  label.star:hover {
+    transform: scale(1.3);
+  }
+
+  label.star:before {
+    content: '\f006';
+    font-family: FontAwesome;
+  }
+}
+#meetupForm{
+  @media (min-width: 768px) {
+    width: 70%;
+  }
+  #datetimepicker1{
+    ul{
+      .datepicker{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        padding-bottom: 0;
+        .datepicker-days, .datepicker-months, .datepicker-years{
+          table.table-condensed {
+            thead{
+              tr{
+                .picker-switch {
+                  text-align: center;
+                  th.next{
+                    text-align: right!important;
+                  }
+                }
+              }
+            }
+            tbody{
+              tr {
+                &:nth-of-type(odd) {
+                  background-color: rgba(0,0,0,.05);
+                }
+                td {
+                  padding: 0.5rem;
+                  text-align: center;
+                  &:hover{
+                    color: white;
+                    background-color: darkgray;
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .accordion-toggle{
+        display: flex;
+        justify-content: center;
+      }
+      .timepicker {
+        display: flex;
+        justify-content: center;
+        table{
+          tr {
+            td{
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+#map{
+  height: calc(100vh - 87px);
+}
+.leaflet-popup-content {
+  display: flex;
+  a{
+    color: black;
+    align-self: center;
+  }
+}

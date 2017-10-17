@@ -1,0 +1,12 @@
+language: java
+jdk:
+  - oraclejdk8
+before_install:
+  - chmod +x gradlew
+  - nvm install node 4.2.6
+  - nvm use node 4.2.6
+script:
+  - ./gradlew -i check -Dname=travis
+branches:
+  only:
+  - master

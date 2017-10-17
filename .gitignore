@@ -1,0 +1,32 @@
+# file extensions
+.DS_Store
+*.iml
+*.ipr
+*.iws
+# idea
+.idea/copyright
+.idea/dataSources
+.idea/dictionaries
+.idea/libraries
+.idea/codeStyleSettings.xml
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/gradle.xml
+.idea/jsLibraryMappings.xml
+.idea/modules.xml
+.idea/uiDesigner.xml
+.idea/vcs.xml
+.idea/workspace.xml
+# eclipse
+.classpath
+.project
+.settings
+#
+.gradle
+bin
+build
+out
+node_modules
+npm-debug\.log
+
+*.gsheet

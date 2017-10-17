@@ -1,0 +1,30 @@
+{
+  "name": "co2015-16-17-group-09",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.com/UOL-CS/co2015-16-17-group-09.svg?token=28RnFLLp1yR7ez52zWpv&branch=master)](https://travis-ci.com/UOL-CS/co2015-16-17-group-09)",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "gulp-clean-css": "^3.0.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.0.1",
+    "gulp-cucumber": "^0.0.22"
+  },
+  "scripts": {
+    "test": "gulp cucumber"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UOL-CS/co2015-16-17-group-09.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UOL-CS/co2015-16-17-group-09/issues"
+  },
+  "homepage": "https://github.com/UOL-CS/co2015-16-17-group-09#readme"
+}
